@@ -1,27 +1,25 @@
 #include <iostream>
 using namespace std;
 
-int countZeros(int arr[], int size) {
+int countZeros(int arr[], int len) {  // Changed parameter name from size to len
     int count = 0;
     
-    __asm  volatile(
-        "mov %1, %%ecx\n\t"    
-        "mov %2, %%esi\n\t"     
-        "xor %%eax, %%eax\n\t"     
+    __asm {
+        mov ecx, len     ; Load len into counter (changed from size)
+        mov esi, arr     ; Load array address
+        xor eax, eax     ; Clear accumulator for counting
         
-        "loop_start:\n\t"
-        "cmpl $0, (%%esi)\n\t"  
-        "jne skip_count\n\t"         
-        "inc %%eax\n\t"               
+    loop_start:
+        cmp DWORD PTR [esi], 0  ; Compare array element with 0
+        jne skip_count          ; Skip if not equal
+        inc eax                 ; Increment counter if zero found
         
-        "skip_count:\n\t"
-        "add $4, %%esi\n\t"           
-        "loop loop_start\n\t"      
-        "mov %%eax, %0\n\t"       
-        : "=r" (count)
-        : "r" (size), "r" (arr)
-        : "%eax", "%ecx", "%esi"
-    );
+    skip_count:
+        add esi, 4             ; Move to next array element
+        loop loop_start        ; Decrement ecx and loop if not zero
+        
+        mov count, eax         ; Store final count
+    }
     
     return count;
 }
