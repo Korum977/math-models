@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "pu+id1V65fs=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\dEN5\\Documents\\math-models-main\\math-models\\ConsoleApp2\\ConsoleApp2.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Не удалось извлечь данные о \"Microsoft.NET.Test.Sdk\" из удаленного источника \"https://www.nuget.org/api/v2/FindPackagesById()?id='Microsoft.NET.Test.Sdk'&semVerLevel=2.0.0\".",
+      "libraryId": "Microsoft.NET.Test.Sdk"
+    }
+  ]
+}
